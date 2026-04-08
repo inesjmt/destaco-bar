@@ -34,6 +34,8 @@ h1 {
 }
 
 /* TABS */
+
+
 .tabs{
   display:flex;
   justify-content:center;
@@ -41,9 +43,14 @@ h1 {
   flex-wrap:wrap;
   position:sticky;
   top:0;
+  background: var(--blanco); /* 🔥 ESTO ES LO IMPORTANTE */
   border-bottom: 1px solid var(--gris-claro);
   padding:15px 0;
   z-index:100;
+  margin:0 auto;
+  max-width:720px;
+    padding:10px;
+  border-radius:12px;
 }
 .tab-btn{
   padding:10px 20px;
@@ -76,11 +83,18 @@ ul{
   padding:0;
 }
 li{
-  padding:16px 0;
-  border-bottom:1px solid #eee;
-  text-align:center;          /* centra el contenido */
-}
 
+  text-align:center;          /* centra el contenido */
+  padding:16px;
+  margin-bottom:10px;
+  border-radius:10px;
+  background: var(--blanco);
+  border:1px solid var(--gris-claro);
+  transition: all 0.2s ease;
+}
+li:hover{
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+}
 .plato-linea{
   display:flex;
   justify-content:center;     /* centra el bloque completo */
@@ -97,7 +111,7 @@ li{
 }
 
 .precio{
-  color: var(--gris-oscuro);
+  color: var(--negro);
   font-weight:700;
   white-space:nowrap;
 }
@@ -286,6 +300,9 @@ li{
   border-bottom: 2px solid var(--gris-claro);
   font-weight: 700;
   letter-spacing: 1px;
+   font-size:0.95em;
+     padding-bottom:6px;
+  margin:15px 0 10px 0;
 }
   .leyenda-alergenos img{
     width:36px;
