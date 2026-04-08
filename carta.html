@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carta</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="carta.css">
+</head>
+
+<body>
+
+<div id="btn-up" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i class="fas fa-arrow-circle-up"></i>
+</div>
+
+<div id="btn-home" onclick="location.href='index.html'">
+  <i class="fas fa-home"></i>
+</div>
+
+<header>
+  <img src="logo.png" class="logo-img" alt="Logo">
+  <h1>Nuestra Carta</h1>
+</header>
+
+<nav class="tabs">
+  <button class="tab-btn active" onclick="showSection('tapas',this)">Tapas</button>
+  <button class="tab-btn" onclick="showSection('raciones',this)">Raciones</button>
+</nav>
+
+<section id="tapas" class="menu-section active">
+  <ul id="tapas-list"></ul>
+</section>
+
+<section id="raciones" class="menu-section">
+  <ul id="raciones-list"></ul>
+</section>
+
+<!-- LEYENDA -->
+<div class="leyenda-alergenos">
+  <div><img src="alergenos/gluten.PNG"></div>
+  <div><img src="alergenos/crustaceos.PNG"></div>
+  <div><img src="alergenos/huevos.PNG"></div>
+  <div><img src="alergenos/pescado.PNG"></div>
+  <div><img src="alergenos/cacahuetes.PNG"></div>
+  <div><img src="alergenos/soja.PNG"></div>
+  <div><img src="alergenos/lacteos.PNG"></div>
+  <div><img src="alergenos/apio.PNG"></div>
+  <div><img src="alergenos/mostaza.PNG"></div>
+  <div><img src="alergenos/sesamo.PNG"></div>
+  <div><img src="alergenos/sulfitos.PNG"></div>
+  <div><img src="alergenos/moluscos.PNG"></div>
+  <div><img src="alergenos/altamuces.PNG"></div>
+  <div><img src="alergenos/frutos-cascara.PNG"></div>
+</div>
+
+<p class="nota-alergenos">
+⚠️ Si tienes alguna alergia o intolerancia, consulta con nuestro personal.
+</p>
+
+<footer class="footer-legal">
+  <p class="footer-copy">© 2026 DESTACO Cafeteria Bar</p>
+</footer>
+
+<script>
+function showSection(id,btn){
+  document.querySelectorAll('.menu-section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo(0,0);
+}
+
+const ICONOS = {
+  gluten:'alergenos/gluten.PNG',
+  crustaceos:'alergenos/crustaceos.PNG',
+  huevos:'alergenos/huevos.PNG',
+  pescado:'alergenos/pescado.PNG',
+  soja:'alergenos/soja.PNG',
+  lacteos:'alergenos/lacteos.PNG',
+  mostaza:'alergenos/mostaza.PNG',
+  sesamo:'alergenos/sesamo.PNG',
+  sulfitos:'alergenos/sulfitos.PNG',
+  moluscos:'alergenos/moluscos.PNG',
+  frutos:'alergenos/frutos-cascara.PNG'
+};
+
+/* ===== TAPAS ===== */
+const TAPAS = [
+  // FRÍAS
+  { nombre:'JAMÓN DE RESERVA AL CORTE', categoria:'Tapas frías' },
+  { nombre:'CUÑA DE QUESO EN ACEITE', categoria:'Tapas frías', alergenos:['lacteos'] },
+  { nombre:'CUÑA DE QUESO AL ROMERO', categoria:'Tapas frías', alergenos:['lacteos'] },
+  { nombre:'PIPIRRANA DE BACALAO', categoria:'Tapas frías', alergenos:['pescado'] },
+  { nombre:'ENSALADA ALEMANA', categoria:'Tapas frías', alergenos:['huevos','mostaza'] },
+  { nombre:'SALMOREJO CON QUICOS Y PIPAS', categoria:'Tapas frías', alergenos:['gluten','frutos'] },
+  { nombre:'TOSTA DE GUACAMOLE CON SALMÓN', categoria:'Tapas frías', alergenos:['gluten','pescado'] },
+  { nombre:'TOSTA DE CREMA DE ACEITUNAS Y ANCHOA', categoria:'Tapas frías', alergenos:['gluten','pescado'] },
+  { nombre:'GAMBA COCIDA', categoria:'Tapas frías', alergenos:['crustaceos'] },
+
+  // CALIENTES
+  { nombre:'CHOCO FRITO', categoria:'Tapas calientes', alergenos:['moluscos','gluten'] },
+  { nombre:'BOQUERONES FRITOS', categoria:'Tapas calientes', alergenos:['pescado','gluten'] },
+  { nombre:'TOSTA DE MERO A LA ANDALUZA', categoria:'Tapas calientes', alergenos:['gluten','pescado'] },
+  { nombre:'HIGADITOS DE POLLO AL JEREZ', categoria:'Tapas calientes', alergenos:['sulfitos'] },
+  { nombre:'NUGGETS DE POLLO', categoria:'Tapas calientes', alergenos:['gluten','huevos'] },
+  { nombre:'LAGRIMITAS DE POLLO', categoria:'Tapas calientes', alergenos:['gluten'] },
+  { nombre:'OREJA EN SALSA', categoria:'Tapas calientes' },
+  { nombre:'MORRO FRITO CON SAL CHINA', categoria:'Tapas calientes', alergenos:['soja'] },
+  { nombre:'PANINI', categoria:'Tapas calientes', alergenos:['gluten','lacteos'] },
+  { nombre:'CARNE CON TOMATE', categoria:'Tapas calientes' },
+  { nombre:'MONTADITO DE CARNE PLANCHA', categoria:'Tapas calientes', alergenos:['gluten'] },
+  { nombre:'MONTADITO DE LOMO CON BERENJENAS', categoria:'Tapas calientes', alergenos:['gluten'] },
+  { nombre:'MONTADITO DE CALDERA', categoria:'Tapas calientes', alergenos:['gluten'] },
+  { nombre:'MONTADITO DE PICADILLO DE CHORIZO', categoria:'Tapas calientes', alergenos:['gluten'] },
+  { nombre:'PINCHO DE CERDO A LA MORUNA', categoria:'Tapas calientes' },
+  { nombre:'HAMBURGUESA DE CERDO', categoria:'Tapas calientes', alergenos:['gluten'] },
+  { nombre:'PATATAS BRAVAS', categoria:'Tapas calientes', alergenos:['huevos'] }
+];
+
+/* ===== RACIONES ===== */
+const RACIONES = [
+  // ENTRANTES
+  { nombre:'ENSALADA MIXTA', precio:'9€', categoria:'Entrantes' },
+  { nombre:'ENSALADA DESTACO', precio:'14€', categoria:'Entrantes', alergenos:['pescado','sesamo','huevos'] },
+  { nombre:'TOMATE CON BONITO Y QUESO FETA', precio:'9€', categoria:'Entrantes', alergenos:['pescado','lacteos'] },
+  { nombre:'ANCHOAS DEL CANTÁBRICO', precio:'16€', categoria:'Entrantes', alergenos:['pescado'] },
+  { nombre:'CROQUETAS DE COCIDO', precio:'13€', categoria:'Entrantes', alergenos:['gluten','lacteos'] },
+  { nombre:'CROQUETAS DE RABO DE TORO', precio:'13€', categoria:'Entrantes', alergenos:['gluten','lacteos'] },
+
+  // MAR
+  { nombre:'FRITURA DE PESCADO', precio:'16€', categoria:'Del mar', alergenos:['pescado','gluten'] },
+  { nombre:'CALAMARES A LA ROMANA', precio:'13€', categoria:'Del mar', alergenos:['moluscos','gluten','huevos'] },
+  { nombre:'PUNTILLAS', precio:'14€', categoria:'Del mar', alergenos:['moluscos','gluten'] },
+  { nombre:'GAMBAS AL PIL PIL', precio:'13€', categoria:'Del mar', alergenos:['crustaceos'] },
+  { nombre:'SALMÓN TERIYAKI', precio:'16€', categoria:'Del mar', alergenos:['pescado','soja','gluten'] },
+
+  // CARNES
+  { nombre:'CARRILLADA IBÉRICA', precio:'14€', categoria:'Carnes', alergenos:['sulfitos'] },
+  { nombre:'SECRETO A LA BRASA', precio:'13€', categoria:'Carnes' },
+  { nombre:'FLAMENQUÍN', precio:'13€', categoria:'Carnes', alergenos:['gluten','huevos','lacteos'] },
+  { nombre:'ENTRECOTTE', precio:'16€', categoria:'Carnes' },
+  { nombre:'RABO DE TORO', precio:'19€', categoria:'Carnes', alergenos:['sulfitos'] }
+];
+
+/* ===== FUNCIÓN PINTAR ===== */
+function pintar(lista,id,precio=false){
+  const ul=document.getElementById(id);
+  ul.innerHTML='';
+
+  let categoriaActual='';
+
+  lista.forEach(p=>{
+
+    if(p.categoria && p.categoria!==categoriaActual){
+      categoriaActual=p.categoria;
+
+      ul.innerHTML+=`
+        <li class="categoria-titulo">
+          <h2>${categoriaActual}</h2>
+        </li>`;
+    }
+
+    ul.innerHTML+=`
+      <li>
+        <div class="plato-linea">
+          <span>${p.nombre}</span>
+          ${precio?`<span class="precio">${p.precio}</span>`:''}
+        </div>
+        ${p.alergenos?`
+        <div class="alergenos">
+          ${p.alergenos.map(a=>`<img src="${ICONOS[a]}" class="icon-alergeno">`).join('')}
+        </div>`:''}
+      </li>`;
+  });
+}
+
+pintar(TAPAS,'tapas-list');
+pintar(RACIONES,'raciones-list',true);
+</script>
+
+</body>
+</html>
