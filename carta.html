@@ -26,16 +26,24 @@
 </header>
 
 <nav class="tabs">
+  <button class="tab-btn active" onclick="showSection('tostadas',this)">Tostadas</button>
   <button class="tab-btn active" onclick="showSection('tapas',this)">Tapas</button>
   <button class="tab-btn" onclick="showSection('raciones',this)">Raciones</button>
-</nav>
+   <button class="tab-btn" onclick="showSection('bebidas',this)">Bebidas</button>
 
-<section id="tapas" class="menu-section active">
+</nav>
+<section id="tostadas" class="menu-section active">
+  <ul id="tostadas-list"></ul>
+</section>
+<section id="tapas" class="menu-section">
   <ul id="tapas-list"></ul>
 </section>
 
 <section id="raciones" class="menu-section">
   <ul id="raciones-list"></ul>
+</section>
+<section id="bebidas" class="menu-section">
+  <ul id="bebidas-list"></ul>
 </section>
 
 <!-- LEYENDA -->
@@ -87,6 +95,16 @@ const ICONOS = {
   frutos:'alergenos/frutos-cascara.PNG'
 };
 
+const TOSTADAS = [
+  { nombre:'TOSTADA DE JAMÓN Y TOMATE', precio:'3€', alergenos:['gluten'] },
+  { nombre:'TOSTADA DE ACEITE Y TOMATE', precio:'2€', alergenos:['gluten'] },
+  { nombre:'GRATINADA DE JAMÓN Y TOMATE', precio:'3€', alergenos:['gluten','lacteos'] },
+  { nombre:'GRATINADA DE JAMÓN YORK Y TOMATE', precio:'3€', alergenos:['gluten','lacteos'] },
+  { nombre:'GRATINADA DE ATÚN Y TOMATE', precio:'3€', alergenos:['gluten','lacteos','pescado'] },
+  { nombre:'TOSTADA DE MANTEQUILLA Y MERMELADA', precio:'2,5€', alergenos:['gluten','lacteos'] },
+  { nombre:'TOSTADA DE AGUACATE Y SALMÓN', precio:'4€', alergenos:['gluten','pescado'] }
+];
+
 /* ===== TAPAS ===== */
 const TAPAS = [
   // FRÍAS
@@ -123,28 +141,54 @@ const TAPAS = [
 /* ===== RACIONES ===== */
 const RACIONES = [
   // ENTRANTES
-  { nombre:'ENSALADA MIXTA', precio:'9€', categoria:'Entrantes' },
-  { nombre:'ENSALADA DESTACO', precio:'14€', categoria:'Entrantes', alergenos:['pescado','sesamo','huevos'] },
-  { nombre:'TOMATE CON BONITO Y QUESO FETA', precio:'9€', categoria:'Entrantes', alergenos:['pescado','lacteos'] },
-  { nombre:'ANCHOAS DEL CANTÁBRICO', precio:'16€', categoria:'Entrantes', alergenos:['pescado'] },
-  { nombre:'CROQUETAS DE COCIDO', precio:'13€', categoria:'Entrantes', alergenos:['gluten','lacteos'] },
-  { nombre:'CROQUETAS DE RABO DE TORO', precio:'13€', categoria:'Entrantes', alergenos:['gluten','lacteos'] },
 
-  // MAR
-  { nombre:'FRITURA DE PESCADO', precio:'16€', categoria:'Del mar', alergenos:['pescado','gluten'] },
-  { nombre:'CALAMARES A LA ROMANA', precio:'13€', categoria:'Del mar', alergenos:['moluscos','gluten','huevos'] },
-  { nombre:'PUNTILLAS', precio:'14€', categoria:'Del mar', alergenos:['moluscos','gluten'] },
-  { nombre:'GAMBAS AL PIL PIL', precio:'13€', categoria:'Del mar', alergenos:['crustaceos'] },
-  { nombre:'SALMÓN TERIYAKI', precio:'16€', categoria:'Del mar', alergenos:['pescado','soja','gluten'] },
+	{ nombre:'ENSALADA MIXTA', precio:'9€', categoria:'Entrantes' },
+	{ nombre:'ENSALADA DESTACO', precio:'14€', categoria:'Entrantes', alergenos:['pescado','sesamo','huevos'] },
+	{ nombre:'TOMATE DE LA HUERTA CON BONITO Y QUESO FETA', precio:'9€', categoria:'Entrantes', alergenos:['pescado','lacteos'] },
+	{ nombre:'ANCHOAS DEL CANTÁBRICO CON MOJE', precio:'16€', categoria:'Entrantes', alergenos:['pescado'] },
+	{ nombre:'CROQUETAS DE COCIDO', precio:'13€', categoria:'Entrantes', alergenos:['gluten','lacteos'] },
+	{ nombre:'CROQUETAS DE RABO DE TORO', precio:'13€', categoria:'Entrantes', alergenos:['gluten','lacteos'] },
+	{ nombre:'PATATAS HASSELBACK GRATINADAS CON CHEDDAR Y CHIPS DE BACON', precio:'10€', categoria:'Entrantes', alergenos:['lacteos'] },
 
-  // CARNES
-  { nombre:'CARRILLADA IBÉRICA', precio:'14€', categoria:'Carnes', alergenos:['sulfitos'] },
-  { nombre:'SECRETO A LA BRASA', precio:'13€', categoria:'Carnes' },
-  { nombre:'FLAMENQUÍN', precio:'13€', categoria:'Carnes', alergenos:['gluten','huevos','lacteos'] },
-  { nombre:'ENTRECOTTE', precio:'16€', categoria:'Carnes' },
-  { nombre:'RABO DE TORO', precio:'19€', categoria:'Carnes', alergenos:['sulfitos'] }
+// DEL MAR
+	{ nombre:'BACALAO A LA BAEZANA', precio:'14€', categoria:'Del mar', alergenos:['pescado'] },
+	{ nombre:'PULPO A LA BRASA CON PAPAS Y PIMENTÓN', precio:'16€', categoria:'Del mar', alergenos:['moluscos'] },
+	{ nombre:'FRITURA DE PESCADO', precio:'16€', categoria:'Del mar', alergenos:['pescado','gluten'] },
+	{ nombre:'PUNTILLAS', precio:'14€', categoria:'Del mar', alergenos:['moluscos','gluten'] },
+	{ nombre:'BOQUERONES FRITOS', precio:'12€', categoria:'Del mar', alergenos:['pescado','gluten'] },
+	{ nombre:'CALAMARES A LA ROMANA', precio:'13€', categoria:'Del mar', alergenos:['moluscos','gluten','huevos'] },
+	{ nombre:'REJOS FRITOS', precio:'14€', categoria:'Del mar', alergenos:['moluscos','gluten'] },
+	{ nombre:'TAQUITOS DE PEZ EN ADOBO', precio:'13€', categoria:'Del mar', alergenos:['pescado','gluten'] },
+	{ nombre:'CAZUELA DE GAMBAS AL PIL PIL', precio:'13€', categoria:'Del mar', alergenos:['crustaceos'] },
+	{ nombre:'LUBINA REBOZADA EN COPOS DE MAÍZ', precio:'16€', categoria:'Del mar', alergenos:['pescado'] },
+	{ nombre:'SALMÓN TERIYAKI CON FIDEOS WOK Y VERDURITAS', precio:'16€', categoria:'Del mar', alergenos:['pescado','soja','gluten'] },
+	{ nombre:'GAMBA BLANCA PLANCHA (16 UNIDADES)', precio:'17€', categoria:'Del mar', alergenos:['crustaceos'] },
+
+ // CARNES
+	{ nombre:'TORREZNOS DE ÁVILA CON PAPAS Y PIMIENTOS', precio:'13€', categoria:'Carnes' },
+	{ nombre:'CARRILLADA IBÉRICA EN SALSA', precio:'14€', categoria:'Carnes', alergenos:['sulfitos'] },
+	{ nombre:'LAGARTO IBÉRICO A LA BRASA', precio:'14€', categoria:'Carnes' },
+	{ nombre:'SECRETO A LA BRASA', precio:'13€', categoria:'Carnes' },
+	{ nombre:'CHULETILLAS DE LECHAL', precio:'3€', categoria:'Carnes' },
+	{ nombre:'SOLOMILLO AL AJILLO', precio:'13€', categoria:'Carnes' },
+	{ nombre:'CHOTO AL AJILLO', precio:'19€', categoria:'Carnes' },
+	{ nombre:'COCHINILLO LECHAL FRITO AL AJILLO', precio:'13€', categoria:'Carnes' },
+	{ nombre:'FLAMENQUÍN DE LA CASA', precio:'13€', categoria:'Carnes', alergenos:['gluten','huevos','lacteos'] },
+	{ nombre:'ENTRECOTTE DE TERNERA MADURADO', precio:'16€', categoria:'Carnes' },
+	{ nombre:'RABO DE TORO ESTOFADO CON PATATAS', precio:'19€', categoria:'Carnes', alergenos:['sulfitos'] }
+  
 ];
 
+const BEBIDAS = [
+  { nombre:'CAFÉ', precio:'1,5€' },
+  { nombre:'CORTADO', precio:'1,6€' },
+  { nombre:'COLA CAO', precio:'2€', alergenos:['lacteos'] },
+  { nombre:'ZUMO NATURAL', precio:'2,5€' },
+  { nombre:'REFRESCOS', precio:'2,2€' },
+  { nombre:'CERVEZA CAÑA', precio:'1,8€' },
+  { nombre:'CERVEZA TERCIO', precio:'2,5€' },
+  { nombre:'COPA DE VINO', precio:'2€', alergenos:['sulfitos'] }
+];
 /* ===== FUNCIÓN PINTAR ===== */
 function pintar(lista,id,precio=false){
   const ul=document.getElementById(id);
@@ -177,8 +221,10 @@ function pintar(lista,id,precio=false){
   });
 }
 
+pintar(TOSTADAS,'tostadas-list',true);
 pintar(TAPAS,'tapas-list');
 pintar(RACIONES,'raciones-list',true);
+pintar(BEBIDAS,'bebidas-list',true);
 </script>
 
 </body>
