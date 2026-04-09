@@ -25,27 +25,35 @@
   <h1>Nuestra Carta</h1>
 </header>
 <section class="destacados">
-  <h2> Recomendados</h2>
+  <h2>Recomendados</h2>
 
-  <div class="grid-destacados">
-    
-    <div class="card">
-      <img src="img/croquetas.png">
-      <p>Croquetas caseras</p>
+  <div class="carrusel">
+
+    <button class="btn-carrusel prev">&#10094;</button>
+
+    <div class="viewport">
+      <div class="track" id="track"> 
+
+        <div class="card"><img src="img/croquetas.png"><p>Croquetas caseras</p></div>
+        <div class="card"><img src="img/pulpo.png"><p>Pulpo a la brasa</p></div>
+        <div class="card"><img src="img/rejos.png"><p>Rejos</p></div>
+        
+        <div class="card"><img src="img/jamon.png"><p>Gratinada de atún</p></div>
+        <div class="card"><img src="img/croissant.png"><p>Croissant vegetal</p></div>
+        <div class="card"><img src="img/patata.png"><p>Patatas hasselback</p></div>
+        
+        <div class="card"><img src="img/hamburguesa.png"><p>Gratinada de atún</p></div>
+        <div class="card"><img src="img/pincho.png"><p>Croissant vegetal</p></div>
+        <div class="card"><img src="img/rejos.png"><p>Rejos1</p></div>
+
+      </div>
     </div>
 
-    <div class="card">
-      <img src="img/pulpo.png">
-      <p>Pulpo a la brasa</p>
-    </div>
-
-    <div class="card">
-      <img src="img/jamon.png">
-      <p>Gratinada de atún</p>
-    </div>
+    <button class="btn-carrusel next">&#10095;</button>
 
   </div>
 </section>
+
 <nav class="tabs">
   <button class="tab-btn active" onclick="showSection('tostadas',this)">Tostadas</button>
   <button class="tab-btn" onclick="showSection('tapas',this)">Tapas</button>
@@ -94,6 +102,37 @@
 </footer>
 
 <script>
+
+
+const track = document.getElementById('track');
+const next = document.querySelector('.next');
+const prev = document.querySelector('.prev');
+
+let index = 0;
+const visibles = 3;
+const total = track.children.length;
+
+next.addEventListener('click', () => {
+  if(index < total - visibles){
+    index++;
+    actualizar();
+  }
+});
+
+prev.addEventListener('click', () => {
+  if(index > 0){
+    index--;
+    actualizar();
+  }
+});
+
+function actualizar(){
+  const porcentaje = 100 / visibles;
+  track.style.transform = `translateX(-${index * porcentaje}%)`;
+}
+
+
+
 function showSection(id,btn){
   document.querySelectorAll('.menu-section').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
