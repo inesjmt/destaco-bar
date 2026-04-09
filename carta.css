@@ -22,9 +22,9 @@ header{
   display:flex;
   flex-direction:column;
   align-items:center;
-  margin-bottom:30px;
+  margin-bottom:20px;
+  gap:5px;
 }
-
 .logo-img{
   width:120px;
 }
@@ -35,35 +35,53 @@ h1 {
 
 /* TABS */
 
-
 .tabs{
   display:flex;
   justify-content:center;
-  gap:10px;
+  gap:8px;
   flex-wrap:wrap;
   position:sticky;
-  border-bottom: none;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
   top:0;
   background: var(--blanco);
   z-index:100;
   margin:0 auto;
   max-width:720px;
-  padding:10px;
-  border-radius:12px;
+  padding:6px;
+  border-radius:30px;
 }
+
+/* BOTONES */
 .tab-btn{
-  padding:10px 20px;
-  background:none;
+  padding:8px 14px;
+  background: var(--blanco);
   color: var(--gris-medio);
-  font-weight:bold;
-  border-radius:25px;
+  font-weight:600;
+  border-radius:20px;
   cursor:pointer;
+  border:1px solid var(--gris-claro);
+  transition: all 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+
+  font-size:0.9em;
 }
-.tab-btn.active,
+
+/* ACTIVO */
+.tab-btn.active{
+  background: #222; /* negro suave */
+  color: var(--blanco);
+  border:1px solid #222;
+  transform: scale(0.96);
+
+}
+
+/* HOVER */
 .tab-btn:hover{
- border-bottom: 2px solid var(--negro);  color: var(--negro);
+  color: var(--negro);
+  border-color: var(--gris-medio);
 }
+
+
+
 
 /* SECCIONES */
 .menu-section{
@@ -71,9 +89,14 @@ h1 {
   max-width:720px;
   margin:0 auto;
   text-align:left;
+  opacity:0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
 }
 .menu-section.active{
   display:block;
+  opacity:1;
+  transform: translateY(0);
 }
 
 
@@ -83,17 +106,18 @@ ul{
   padding:0;
 }
 li{
-
-  text-align:center;          /* centra el contenido */
-  padding:16px;
-  margin-bottom:10px;
-  border-radius:10px;
+  text-align:center;
+  padding:14px;
+  margin-bottom:12px;
+  border-radius:12px;
   background: var(--blanco);
   border:1px solid var(--gris-claro);
   transition: all 0.2s ease;
 }
+
 li:hover{
-  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
 }
 .plato-linea{
   display:flex;
@@ -113,7 +137,8 @@ li:hover{
 .precio{
   color: var(--negro);
   font-weight:700;
-  white-space:nowrap;
+  padding:2px 8px;
+  border-radius:8px;
 }
 
 .icon-alergeno{
@@ -300,9 +325,10 @@ li:hover{
   border-bottom: 2px solid var(--gris-claro);
   font-weight: 700;
   letter-spacing: 1px;
-   font-size:0.95em;
-     padding-bottom:6px;
-  margin:15px 0 10px 0;
+  font-size:1em;
+  padding-bottom:6px;
+  margin:25px 0 15px 0;
+  text-align:left;
 }
   .leyenda-alergenos img{
     width:36px;
