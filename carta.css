@@ -42,14 +42,14 @@ h1 {
   gap:10px;
   flex-wrap:wrap;
   position:sticky;
+  border-bottom: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
   top:0;
-  background: var(--blanco); /* 🔥 ESTO ES LO IMPORTANTE */
-  border-bottom: 1px solid var(--gris-claro);
-  padding:15px 0;
+  background: var(--blanco);
   z-index:100;
   margin:0 auto;
   max-width:720px;
-    padding:10px;
+  padding:10px;
   border-radius:12px;
 }
 .tab-btn{
