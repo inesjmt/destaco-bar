@@ -60,8 +60,6 @@ h1 {
   cursor:pointer;
   border:1px solid var(--gris-claro);
   transition: all 0.2s ease;
-    -webkit-tap-highlight-color: transparent;
-
   font-size:0.9em;
 }
 
