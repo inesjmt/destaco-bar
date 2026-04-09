@@ -6,6 +6,40 @@
   --gris-claro: #dddddd;
   --blanco: #ffffff;
 }
+
+.destacados{
+  max-width:720px;
+  margin:20px auto;
+  text-align:center;
+}
+
+.destacados h2{
+  margin-bottom:15px;
+}
+
+.grid-destacados{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+
+.card{
+  background:white;
+  border-radius:12px;
+  overflow:hidden;
+  border:1px solid #eee;
+}
+
+.card img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+}
+
+.card p{
+  font-size:0.8em;
+  padding:0px;
+}
 body{
   margin:0;
   font-family:'Roboto',sans-serif;
@@ -60,16 +94,18 @@ h1 {
   cursor:pointer;
   border:1px solid var(--gris-claro);
   transition: all 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+
   font-size:0.9em;
 }
 
 /* ACTIVO */
 .tab-btn.active{
   background: #222; /* negro suave */
-  color: #fff !important;  
+  color: #fff !important;   /* 🔥 esto lo arregla */
   border:1px solid #222;
   transform: scale(0.96);
-  background: #2b2b2b;
+
 }
 
 /* HOVER */
@@ -315,7 +351,7 @@ li:hover{
 
 .categoria-titulo {
   list-style: none;
-  margin-top:30px;
+  margin-top: 25px;
 }
 
 .categoria-titulo h2 {
